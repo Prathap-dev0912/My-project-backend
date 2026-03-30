@@ -5,9 +5,14 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-@Post('/signup')
+@Post('signup')
 signup(@Body() body: any) {
-  return this.usersService.signup(body.firstName, body.lastName, body.email);
+  console.log("BODY RECEIVED:", body); // 👈 ADD THIS
+  return this.usersService.signup(
+    body.firstName,
+    body.lastName,
+    body.email
+  );
 }
 
 @Post("verify-otp")
