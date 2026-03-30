@@ -42,7 +42,7 @@ import {
 } from "@nestjs/common";
 import { ProfileService } from "./profile.service";
 import { UpdateProfileDto } from "./dto/update-profile";
-import { JwtAuthGuard } from "src/users/guards/jwt-auth.guard";
+import { JwtAuthGuard } from "../users/guards/jwt-auth.guard";
 
 @Controller("profile")
 @UseGuards(JwtAuthGuard)
