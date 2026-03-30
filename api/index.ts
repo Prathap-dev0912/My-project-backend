@@ -8,8 +8,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: '*',
-  });
+  origin: [
+    "http://localhost:3000", // local frontend
+    "https://my-project-nine-omega-42.vercel.app", // your deployed frontend
+  ],
+  credentials: true,
+});
 
   await app.init();
 
