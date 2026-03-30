@@ -33,18 +33,12 @@
 //   }
 // }
 
-import {
-  Controller,
-  Put,
-  Body,
-  UseGuards,
-  Req,
-} from "@nestjs/common";
-import { ProfileService } from "./profile.service";
-import { UpdateProfileDto } from "./dto/update-profile";
-import { JwtAuthGuard } from "../users/guards/jwt-auth.guard";
+import { Controller, Put, Body, UseGuards, Req } from '@nestjs/common';
+import { ProfileService } from './profile.service';
+import { UpdateProfileDto } from './dto/update-profile';
+import { JwtAuthGuard } from '../users/guards/jwt-auth.guard';
 
-@Controller("profile")
+@Controller('profile')
 @UseGuards(JwtAuthGuard)
 export class ProfileController {
   constructor(private readonly accountService: ProfileService) {}

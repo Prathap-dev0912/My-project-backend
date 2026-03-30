@@ -1,7 +1,6 @@
 import { IsString, IsNumber, IsEmail } from 'class-validator';
 
 export class CreateProductDto {
-
   @IsString()
   name: string;
 

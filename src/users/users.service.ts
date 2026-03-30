@@ -3,7 +3,7 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt/dist/jwt.service';
+import { JwtService } from '@nestjs/jwt';
 import { User, UserDocument } from './schema/userschema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -58,7 +58,6 @@ export class UsersService {
     const otpToken = this.jwtService.sign(
       { email: user.email },
       { expiresIn: '5m' },
-      
     );
 
     return {

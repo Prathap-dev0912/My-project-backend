@@ -61,29 +61,26 @@
 //   }
 // }
 
-
 import {
   Injectable,
   NotFoundException,
   BadRequestException,
-} from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
-import { User } from "../users/schema/userschema";
-import { UpdateProfileDto } from "./dto/update-profile";
+} from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { User } from '../users/schema/userschema';
+import { UpdateProfileDto } from './dto/update-profile';
 
 @Injectable()
 export class ProfileService {
-  constructor(
-    @InjectModel(User.name) private userModel: Model<User>
-  ) {}
+  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
   async upsertAccount(userId: string, dto: UpdateProfileDto) {
     try {
       const user = await this.userModel.findById(userId);
 
       if (!user) {
-        throw new NotFoundException("User not found");
+        throw new NotFoundException('User not found');
       }
 
       // 🔥 UPSERT (update existing user profile fields)
@@ -97,11 +94,11 @@ export class ProfileService {
             phoneNumber: dto.phoneNumber,
           },
         },
-        { new: true, runValidators: true }
+        { new: true, runValidators: true },
       );
 
       return {
-        message: "Profile updated successfully",
+        message: 'Profile updated successfully',
         user: updatedUser,
       };
     } catch (error) {

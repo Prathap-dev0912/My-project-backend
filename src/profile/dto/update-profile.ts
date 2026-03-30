@@ -1,6 +1,6 @@
 // src/modules/users/dto/update-profile.dto.ts
 
-import { IsOptional, IsString, IsDateString } from "class-validator";
+import { IsOptional, IsString, IsDateString } from 'class-validator';
 
 export class UpdateProfileDto {
   @IsOptional()
@@ -18,8 +18,6 @@ export class UpdateProfileDto {
   @IsOptional()
   @IsString()
   phoneNumber?: string;
-
-
 
   @IsOptional()
   @IsDateString()

@@ -17,10 +17,10 @@ export class User {
   @Prop({ type: String })
   phoneNumber: string;
 
-  @Prop({ type: String, default: null }) 
+  @Prop({ type: String, default: null })
   otp: string | null;
 
-  @Prop({ type: Date, default: null }) 
+  @Prop({ type: Date, default: null })
   otpExpiry: Date | null;
 
   @Prop({ default: false })

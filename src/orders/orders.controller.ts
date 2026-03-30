@@ -4,29 +4,37 @@ import { Types } from 'mongoose';
 
 @Controller('orders')
 export class OrdersController {
-    constructor(private readonly ordersService: OrdersService) {}
+  constructor(private readonly ordersService: OrdersService) {}
 
-    @Post()
-createorder(
+  @Post()
+  createorder(
     @Body('propertyname') propertyname: string,
     @Body('tokens') tokens: number,
     @Body('price') price: number,
     @Body('status') status: string,
     @Body('currency') currency: string,
     @Body('country') country: string,
-    @Body('code') code: string
-) {
-    return this.ordersService.createOrder(propertyname, tokens, price, status, currency, country, code);
-}
+    @Body('code') code: string,
+  ) {
+    return this.ordersService.createOrder(
+      propertyname,
+      tokens,
+      price,
+      status,
+      currency,
+      country,
+      code,
+    );
+  }
 
-    @Get()
-    getAllorders(){
-        return this.ordersService.getAllorders();
-    }
+  @Get()
+  getAllorders() {
+    return this.ordersService.getAllorders();
+  }
 
-    @Get(':id')
-    getorderbyId(@Param('id') id: string) {
-        const objectId = new Types.ObjectId(id);// Convert string to ObjectId if necessary
-        return this.ordersService.getorderbyId(objectId);
-    }
+  @Get(':id')
+  getorderbyId(@Param('id') id: string) {
+    const objectId = new Types.ObjectId(id); // Convert string to ObjectId if necessary
+    return this.ordersService.getorderbyId(objectId);
+  }
 }
