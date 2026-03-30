@@ -9,7 +9,7 @@ import { JwtModule } from '@nestjs/jwt';
   imports: [
     MongooseModule.forFeature([{ name: Order.name, schema: orderSchema }]),
     JwtModule.register({
-      secret: 'JWT_SECRET',
+      secret: process.env.JWT_SECRET || 'JWT_SECRET',
     }),
   ],
   controllers: [OrdersController],

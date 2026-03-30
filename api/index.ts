@@ -1,18 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../src/app.module';
 import serverless from 'serverless-http';
-import { connectDB } from '../src/lib/mongodb'; // ✅ import DB connection
 
-let server: any;
+let cachedHandler;
 
-async function bootstrap() {
-  // ✅ Ensure DB is connected BEFORE app starts
-  await connectDB();
-
+async function createHandler() {
   const app = await NestFactory.create(AppModule);
-
-  // ✅ (optional but recommended)
-  app.setGlobalPrefix('api');
 
   app.enableCors({
     origin: [
@@ -30,10 +23,9 @@ async function bootstrap() {
   return serverless(expressApp);
 }
 
-export default async function handler(req: any, res: any) {
-  if (!server) {
-    server = await bootstrap();
+export const handler = async (event, context) => {
+  if (!cachedHandler) {
+    cachedHandler = await createHandler();
   }
-
-  return server(req, res);
-}
+  return cachedHandler(event, context);
+};
