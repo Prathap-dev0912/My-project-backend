@@ -12,6 +12,7 @@ async function bootstrap() {
     "http://localhost:3000", // local frontend
     "https://my-project-nine-omega-42.vercel.app", // your deployed frontend
   ],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 });
 
